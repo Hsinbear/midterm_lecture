@@ -111,7 +111,7 @@ $lectureCount = $result->num_rows;
         <!-- Navbar -->
         <div class="container-fluid py-5">
             <div class="row">
-                <div class="col-md-12 d-flex justify-content-center">
+                <div class="col-12 d-flex justify-content-center">
                     <div class="card w-60">
                         <div class="card-header pb-0">
                             <a class="btn btn-primary " href="lecture.php" role="button"><i class="fa-solid fa-angles-left fa-fw"></i>回課程管理清單</a>
@@ -129,15 +129,15 @@ $lectureCount = $result->num_rows;
                                     ?>
                                         <div class="st"></div>
                                         <div class="row justify-content-center">
-                                            <div class="col-lg-6 col-md-8 d-flex justify-content-center mt-8">
+                                            <!-- <div class="col-lg-6 col-md-8 d-flex justify-content-center mt-8">
                                                 <div class="previewimage border ">
                                                     <img alt="圖片預覽">
                                                     <div>
                                                         <button class="btn btn-danger deletebtn" type="hidden" id="deletebtn">刪除圖片</button>
                                                     </div>
                                                 </div>
-                                            </div>
-                                            <div class="col-lg-6 col-md-8">
+                                            </div> -->
+                                            <div class="col-lg-8 col-md-8">
                                                 <!-- <form action="doAddLecture.php" method="post" enctype="multipart/form-data"> -->
                                                 <input type="hidden" name="id" value="<?= $lecture["id"] ?>">
                                                 <div class="mb-2 st">
@@ -232,7 +232,8 @@ $lectureCount = $result->num_rows;
                                                 </div>
                                                 <div class="mb-3 st">
                                                     <label for="img" class="form-label">課程照片</label>
-                                                    <input class="form-control" type="file" id="img" name="img" multiple>
+                                                    <input class="form-control" type="file" id="cover" name="cover">
+                                                    <input class="form-control" type="file" id="img" name="img">
                                                 </div>
                                                 <!-- </form> -->
                                             </div>
