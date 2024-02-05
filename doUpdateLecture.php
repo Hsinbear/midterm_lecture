@@ -1,5 +1,5 @@
 <?php
-require_once("./db_connect.php");
+require_once("../db_connect.php");
 
 if (!isset($_POST["name"])) {
     die("請循正常管道登入");
@@ -36,7 +36,7 @@ if ($_FILES['cover']['error'] == 0) {
     $filenameCover = "update" . $filenameCover . "." . $fileExtCover;
 
     #上傳圖片
-    if (move_uploaded_file($_FILES['cover']['tmp_name'], './lecture_cover/' . $filenameCover)) {
+    if (move_uploaded_file($_FILES['cover']['tmp_name'], '../lecture_cover/' . $filenameCover)) {
         echo "封面更新成功";
     } else {
         echo "封面更新失敗";
@@ -59,7 +59,7 @@ if ($_FILES['img']['error'] == 0) {
     $filenameImg = "update" . $filenameImg . "." . $fileExtImg;
 
     #上傳圖片
-    if (move_uploaded_file($_FILES['img']['tmp_name'], './lecture_img/' . $filenameImg)) {
+    if (move_uploaded_file($_FILES['img']['tmp_name'], '../lecture_img/' . $filenameImg)) {
         echo "細節照更新成功";
     } else {
         echo "細節照更新失敗";

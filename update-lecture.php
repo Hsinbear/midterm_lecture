@@ -6,7 +6,7 @@ if (!isset($_GET["id"])) {
     $id = $_GET["id"];
 }
 
-require_once("./db_connect.php");
+require_once("../db_connect.php");
 
 $sql = "SELECT * FROM lecture WHERE id=$id";
 $result = $conn->query($sql);
@@ -20,8 +20,8 @@ $lectureCount = $result->num_rows;
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <link rel="apple-touch-icon" sizes="76x76" href="./assets/img/apple-icon.png">
-    <link rel="icon" type="image/png" href="./assets/img/favicon.png">
+    <link rel="apple-touch-icon" sizes="76x76" href="../assets/img/apple-icon.png">
+    <link rel="icon" type="image/png" href="../assets/img/favicon.png">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <title>
         修改課程
@@ -29,13 +29,13 @@ $lectureCount = $result->num_rows;
     <!--     Fonts and icons     -->
     <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700" rel="stylesheet" />
     <!-- Nucleo Icons -->
-    <link href="./assets/css/nucleo-icons.css" rel="stylesheet" />
-    <link href="./assets/css/nucleo-svg.css" rel="stylesheet" />
+    <link href="../assets/css/nucleo-icons.css" rel="stylesheet" />
+    <link href="../assets/css/nucleo-svg.css" rel="stylesheet" />
     <!-- Font Awesome Icons -->
     <script src="https://kit.fontawesome.com/42d5adcbca.js" crossorigin="anonymous"></script>
-    <link href="./assets/css/nucleo-svg.css" rel="stylesheet" />
+    <link href="../assets/css/nucleo-svg.css" rel="stylesheet" />
     <!-- CSS Files -->
-    <link id="pagestyle" href="./assets/css/argon-dashboard.css?v=2.0.4" rel="stylesheet" />
+    <link id="pagestyle" href="../assets/css/argon-dashboard.css?v=2.0.4" rel="stylesheet" />
     <!-- Bootstrap JavaScript (Popper.js and Bootstrap JS) -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="..." crossorigin="anonymous"></script>
 
@@ -120,7 +120,7 @@ $lectureCount = $result->num_rows;
                             </div>
                         </div>
                         <div class="card-body">
-                            <form action="lectureUpdate.php" method="post" enctype="multipart/form-data">
+                            <form action="doUpdateLecture.php" method="post" enctype="multipart/form-data">
                                 <div class="container">
                                     <?php if ($lectureCount == 0) : ?>
                                         使用者不存在
@@ -227,14 +227,14 @@ $lectureCount = $result->num_rows;
                                                 <div class="mb-3 st">
                                                     <label for="img" class="form-label">課程照片</label>
                                                     <input type="hidden" name="old_cover" value="<?= $lecture["cover"] ?>">
-                                                    <img src="./lecture_cover/<?= $lecture["cover"] ?>" style="width: 500px" alt="">
+                                                    <img src="../lecture_cover/<?= $lecture["cover"] ?>" style="width: 500px" alt="">
                                                     <div>-</div>
                                                     <input class="form-control" type="file" id="cover" name="cover">
                                                 </div>
                                                 <div class="mb-3 st">
                                                     <label for="img" class="form-label">課程照片</label>
                                                     <input type="hidden" name="old_img" value="<?= $lecture["img"] ?>">
-                                                    <img src="./lecture_img/<?= $lecture["img"] ?>" style="width: 500px" alt="">
+                                                    <img src="../lecture_img/<?= $lecture["img"] ?>" style="width: 500px" alt="">
                                                     <div>-</div>
                                                     <input class="form-control" type="file" id="img" name="img">
                                                 </div>

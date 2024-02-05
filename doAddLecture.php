@@ -1,5 +1,5 @@
 <?php
-require_once("./db_connect.php");
+require_once("../db_connect.php");
 
 if (!isset($_POST["name"])) {
     echo "請循正常管道進入";
@@ -40,7 +40,7 @@ if ($_FILES["cover"]["error"] == 0 && $_FILES["img"]["error"] == 0) {
     // exit;
 
     // 將檔案移至指定目錄
-    if (move_uploaded_file($_FILES["cover"]["tmp_name"], "./lecture_cover/" . $filenameCover) && move_uploaded_file($_FILES["img"]["tmp_name"], "./lecture_img/" . $filenameImg)) {
+    if (move_uploaded_file($_FILES["cover"]["tmp_name"], "../lecture_cover/" . $filenameCover) && move_uploaded_file($_FILES["img"]["tmp_name"], "../lecture_img/" . $filenameImg)) {
 
         echo "upload success!";
         // var_dump($_FILES["cover"]["name"]);
