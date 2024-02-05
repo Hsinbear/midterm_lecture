@@ -306,10 +306,10 @@ if (isset($_GET["search"])) {
                                     <div class="py-2 justify-content-end d-flex align-items-center">
                                         <div class="me-2">排序</div>
                                         <div class="btn-group">
-                                            <a class="btn btn-primary <?php if ($order == 1) echo "active" ?>" href="lecture2.php?order=1&p=<?= $p ?>">id<i class="fa-solid fa-arrow-down-1-9 fa-fw"></i></a>
-                                            <a class="btn btn-primary <?php if ($order == 2) echo "active" ?>" href="lecture2.php?order=2&p=<?= $p ?>">id<i class="fa-solid fa-arrow-down-9-1 fa-fw"></i></a>
-                                            <a class="btn btn-primary <?php if ($order == 3) echo "active" ?>" href="lecture2.php?order=3&p=<?= $p ?>">$<i class="fa-solid fa-arrow-down-1-9 fa-fw"></i></a>
-                                            <a class="btn btn-primary <?php if ($order == 4) echo "active" ?>" href="lecture2.php?order=4&p=<?= $p ?>">$<i class="fa-solid fa-arrow-down-9-1 fa-fw"></i></a>
+                                            <a class="btn btn-primary <?php if ($order == 1) echo "active" ?>" href="lecture2.php?order=1&p=<?= $p ?>">課程編號<i class="fa-solid fa-arrow-down-short-wide fa-fw"></i></a>
+                                            <a class="btn btn-primary <?php if ($order == 2) echo "active" ?>" href="lecture2.php?order=2&p=<?= $p ?>">課程編號<i class="fa-solid fa-arrow-down-wide-short fa-fw"></i></a>
+                                            <a class="btn btn-primary <?php if ($order == 3) echo "active" ?>" href="lecture2.php?order=3&p=<?= $p ?>">價格<i class="fa-solid fa-arrow-down-short-wide fa-fw"></i></a>
+                                            <a class="btn btn-primary <?php if ($order == 4) echo "active" ?>" href="lecture2.php?order=4&p=<?= $p ?>">價格<i class="fa-solid fa-arrow-down-wide-short fa-fw"></i></a>
                                         </div>
                                     </div>
                                 </div>
@@ -351,10 +351,9 @@ if (isset($_GET["search"])) {
                                             foreach ($rows as $lecture) :
                                                 $valid = $lecture["valid"];
                                             ?>
-
                                                 <tr>
                                                     <td class="text-center"><?= $lecture["id"] ?></td>
-                                                    <td class="text-center"><?= $lecture["name"] ?></td>
+                                                    <td class="text-center"><a data-bs-toggle="modal" data-bs-target="#staticBackdrop<?= $lecture["id"] ?>"><?= $lecture["name"] ?></a></td>
                                                     <td class="text-center"><?= $lecture["amount"] ?></td>
                                                     <td class="text-center">
                                                         <?= $lecture["teacher_name"] ?>
@@ -370,7 +369,6 @@ if (isset($_GET["search"])) {
                                                                                 echo "未開放";
                                                                             }
                                                                             ?></td>
-
                                                     <td class="align-middle text-center">
                                                         <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#staticBackdrop<?= $lecture["id"] ?>"><i class="fa-solid fa-eye fa-fw text-white"></i></button>
 
@@ -489,8 +487,8 @@ if (isset($_GET["search"])) {
                                                                         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">關閉</button>
                                                                         <div>
                                                                             <!-- 修改 -->
-                                                                            <a class="btn btn-primary" href="update-lecture.php?id=<?= $lecture["id"] ?>" method="GET">
-                                                                                修改
+                                                                            <a class="btn btn-success" href="update-lecture.php?id=<?= $lecture["id"] ?>" method="GET">
+                                                                                <i class="fa-solid fa-pen-to-square fa-fw"></i>
                                                                             </a>
                                                                             <!-- 刪除 -->
                                                                             <button class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#confirmModal<?= $lecture["id"] ?>" role="button"><i class="fa-solid fa-trash fa-fw"></i></button>
@@ -499,6 +497,9 @@ if (isset($_GET["search"])) {
                                                                 </div>
                                                             </div>
                                                         </div>
+                                                        <a class="btn btn-success" href="update-lecture.php?id=<?= $lecture["id"] ?>" method="GET">
+                                                            <i class="fa-solid fa-pen-to-square fa-fw"></i>
+                                                        </a>
                                                         <div class="modal fade" id="confirmModal<?= $lecture["id"] ?>" tabindex="-1" aria-hidden="true">
                                                             <div class="modal-dialog">
                                                                 <div class="modal-content">
