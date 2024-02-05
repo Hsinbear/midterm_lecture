@@ -152,60 +152,60 @@ $lectureCount = $result->num_rows;
                                                         <label for="" class="title">上課地點：</label>
                                                         <select name="location" id="">
                                                             <option value="">下拉選取</option>
-                                                            <option value="1">台北市</option>
-                                                            <option value="2">新北市</option>
-                                                            <option value="3">基隆市</option>
-                                                            <option value="4">桃園市</option>
-                                                            <option value="5">新竹縣</option>
-                                                            <option value="6">苗栗縣</option>
-                                                            <option value="7">台中市</option>
-                                                            <option value="8">彰化縣</option>
-                                                            <option value="9">南投縣</option>
-                                                            <option value="10">雲林縣</option>
-                                                            <option value="11">嘉義縣</option>
-                                                            <option value="12">台南市</option>
-                                                            <option value="13">高雄市</option>
-                                                            <option value="14">屏東縣</option>
-                                                            <option value="15">台東縣</option>
-                                                            <option value="16">花蓮縣</option>
-                                                            <option value="17">宜蘭縣</option>
-                                                            <option value="18">澎湖縣</option>
-                                                            <option value="19">金門縣</option>
-                                                            <option value="20">連江縣</option>
+                                                            <option value="1" <?= ($lecture["location"] == 1) ? "selected" : "" ?>>台北市</option>
+                                                            <option value="2" <?= ($lecture["location"] == 2) ? "selected" : "" ?>>新北市</option>
+                                                            <option value="3" <?= ($lecture["location"] == 3) ? "selected" : "" ?>>基隆市</option>
+                                                            <option value="4" <?= ($lecture["location"] == 4) ? "selected" : "" ?>>桃園市</option>
+                                                            <option value="5" <?= ($lecture["location"] == 5) ? "selected" : "" ?>>新竹縣</option>
+                                                            <option value="6" <?= ($lecture["location"] == 6) ? "selected" : "" ?>>苗栗縣</option>
+                                                            <option value="7" <?= ($lecture["location"] == 7) ? "selected" : "" ?>>台中市</option>
+                                                            <option value="8" <?= ($lecture["location"] == 8) ? "selected" : "" ?>>彰化縣</option>
+                                                            <option value="9" <?= ($lecture["location"] == 9) ? "selected" : "" ?>>南投縣</option>
+                                                            <option value="10" <?= ($lecture["location"] == 10) ? "selected" : "" ?>>雲林縣</option>
+                                                            <option value="11" <?= ($lecture["location"] == 11) ? "selected" : "" ?>>嘉義縣</option>
+                                                            <option value="12" <?= ($lecture["location"] == 12) ? "selected" : "" ?>>台南市</option>
+                                                            <option value="13" <?= ($lecture["location"] == 13) ? "selected" : "" ?>>高雄市</option>
+                                                            <option value="14" <?= ($lecture["location"] == 14) ? "selected" : "" ?>>屏東縣</option>
+                                                            <option value="15" <?= ($lecture["location"] == 15) ? "selected" : "" ?>>台東縣</option>
+                                                            <option value="16" <?= ($lecture["location"] == 16) ? "selected" : "" ?>>花蓮縣</option>
+                                                            <option value="17" <?= ($lecture["location"] == 17) ? "selected" : "" ?>>宜蘭縣</option>
+                                                            <option value="18" <?= ($lecture["location"] == 18) ? "selected" : "" ?>>澎湖縣</option>
+                                                            <option value="19" <?= ($lecture["location"] == 19) ? "selected" : "" ?>>金門縣</option>
+                                                            <option value="20" <?= ($lecture["location"] == 20) ? "selected" : "" ?>>連江縣</option>
                                                         </select>
                                                     </div>
                                                     <div>
                                                         <label for="" class="title">授課老師：</label>
-                                                        <select name="teacher_id" id="">
+                                                        <select name="teacher_id" id="" value="<?= $lecture["teacher_id"] ?>">
                                                             <option value="">下拉選取</option>
-                                                            <option value="1">黃湘苗</option>
-                                                            <option value="2">黃甄芸</option>
-                                                            <option value="3">鍾家鋒</option>
-                                                            <option value="4">薛昱靜</option>
-                                                            <option value="5">潘培倫</option>
-                                                            <option value="6">范佑柏</option>
-                                                            <option value="7">卓毓國</option>
-                                                            <option value="8">顏致宏</option>
-                                                            <option value="9">連子昇</option>
-                                                            <option value="10">施廷奕</option>
-                                                            <option value="11">張少淳</option>
-                                                            <option value="12">連澤恆</option>
-                                                            <option value="13">傅靜婕</option>
-                                                            <option value="14">顏睿恆</option>
-                                                            <option value="15">張正昕</option>
-                                                            <option value="16">王卓延</option>
-                                                            <option value="17">羅嘉寧</option>
-                                                            <option value="18">沈靖程</option>
-                                                            <option value="19">連家恩</option>
-                                                            <option value="20">楊敬祥</option>
+                                                            <option value="1" <?= ($lecture["teacher_id"] == 1) ? "selected" : "" ?>>黃湘苗</option>
+                                                            <option value="2" <?= ($lecture["teacher_id"] == 2) ? "selected" : "" ?>>黃甄芸</option>
+                                                            <option value="3" <?= ($lecture["teacher_id"] == 3) ? "selected" : "" ?>>鍾家鋒</option>
+                                                            <option value="4" <?= ($lecture["teacher_id"] == 4) ? "selected" : "" ?>>薛昱靜</option>
+                                                            <option value="5" <?= ($lecture["teacher_id"] == 5) ? "selected" : "" ?>>潘培倫</option>
+                                                            <option value="6" <?= ($lecture["teacher_id"] == 6) ? "selected" : "" ?>>范佑柏</option>
+                                                            <option value="7" <?= ($lecture["teacher_id"] == 7) ? "selected" : "" ?>>卓毓國</option>
+                                                            <option value="8" <?= ($lecture["teacher_id"] == 8) ? "selected" : "" ?>>顏致宏</option>
+                                                            <option value="9" <?= ($lecture["teacher_id"] == 9) ? "selected" : "" ?>>連子昇</option>
+                                                            <option value="10" <?= ($lecture["teacher_id"] == 10) ? "selected" : "" ?>>施廷奕</option>
+                                                            <option value="11" <?= ($lecture["teacher_id"] == 11) ? "selected" : "" ?>>張少淳</option>
+                                                            <option value="12" <?= ($lecture["teacher_id"] == 12) ? "selected" : "" ?>>連澤恆</option>
+                                                            <option value="13" <?= ($lecture["teacher_id"] == 13) ? "selected" : "" ?>>傅靜婕</option>
+                                                            <option value="14" <?= ($lecture["teacher_id"] == 14) ? "selected" : "" ?>>顏睿恆</option>
+                                                            <option value="15" <?= ($lecture["teacher_id"] == 15) ? "selected" : "" ?>>張正昕</option>
+                                                            <option value="16" <?= ($lecture["teacher_id"] == 16) ? "selected" : "" ?>>王卓延</option>
+                                                            <option value="17" <?= ($lecture["teacher_id"] == 17) ? "selected" : "" ?>>羅嘉寧</option>
+                                                            <option value="18" <?= ($lecture["teacher_id"] == 18) ? "selected" : "" ?>>沈靖程</option>
+                                                            <option value="19" <?= ($lecture["teacher_id"] == 19) ? "selected" : "" ?>>連家恩</option>
+                                                            <option value="20" <?= ($lecture["teacher_id"] == 20) ? "selected" : "" ?>>楊敬祥</option>
                                                         </select>
                                                     </div>
                                                     <div>
                                                         <label for="" class="title">狀態：</label>
                                                         <select name="valid" id="">
                                                             <option value="">下拉選取</option>
-                                                            <option value="0">未開放</option>
-                                                            <option value="1">已開放</option>
+                                                            <option value="0" <?= ($lecture["valid"] == 0) ? "selected" : "" ?>>未開放</option>
+                                                            <option value="1" <?= ($lecture["valid"] == 1) ? "selected" : "" ?>>已開放</option>
                                                         </select>
                                                     </div>
                                                 </div>
@@ -216,7 +216,7 @@ $lectureCount = $result->num_rows;
                                                     <input type="date" class="form-control" name="ending_date" value="<?= $lecture["ending_date"] ?>">
                                                 </div>
                                                 <div class="mb-2 st">
-                                                    <label for="" class="form-label">上課日期</label>
+                                                    <label for="" class="form-label">上課時間</label>
                                                     <input type="time" class="form-control" name="staring_time" value="<?= $lecture["staring_time"] ?>">
                                                     到
                                                     <input type="time" class="form-control" name="ending_time" value="<?= $lecture["ending_time"] ?>">
@@ -347,89 +347,7 @@ $lectureCount = $result->num_rows;
 
 
     <script>
-        // 設定名字字數不能超過50
-        function checkNameLength(input) {
-            var name = input.value;
-            var maxLength = 50;
 
-            if (name.length > maxLength) {
-                alert("姓名字數過長");
-                input.value = name.substring(0, maxLength); // 截斷超過的部分
-            }
-        }
-
-        // 設定性別不能未選擇 (未完成)
-        function checkGenderValue(select) {
-            var gender = select.value;
-
-            // 檢查是否選擇了性別
-            if (gender === "") {
-                alert("請選擇性別");
-                return false; // 阻止表單提交
-            }
-
-            // 其他檢查條件...
-
-            return true; // 允許表單提交
-        }
-
-
-
-
-
-        // 設定電話字數不能超過20
-        function checkPhoneLength(input) {
-            var phone = input.value;
-            var maxLength = 20;
-
-            if (phone.length > maxLength) {
-                alert("手機號碼過長");
-                input.value = phone.substring(0, maxLength); // 截斷超過的部分
-            }
-        }
-
-
-
-        // 設定信箱字數不能超過50
-        function checkEmailLength(input) {
-            var email = input.value;
-            var maxLength = 50;
-
-            if (email.length > maxLength) {
-                alert("信箱過長");
-                input.value = email.substring(0, maxLength); // 截斷超過的部分
-            }
-        }
-
-
-
-
-
-        // 設定介紹輸入欄位不可超過200字數
-        function checkIntroLength(textarea) {
-            var intro = textarea.value;
-            var maxLength = 200;
-
-            if (intro.length > maxLength) {
-                alert("教師介紹字數請小於200");
-                textarea.value = intro.substring(0, maxLength); // 截斷超過的部分
-            }
-        }
-
-        // 設定必須繳交檔案
-        function checkFile() {
-            var fileInput = document.getElementById('imgInput');
-
-            // 檢查是否有選擇檔案
-            if (fileInput.files.length === 0) {
-                alert("請選擇照片檔案");
-                return false; // 阻止表單提交
-            }
-
-            // 檢查其他條件...
-
-            return true; // 允許表單提交
-        }
     </script>
 
 

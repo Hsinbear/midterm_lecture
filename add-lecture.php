@@ -199,7 +199,7 @@ $rows = $result->fetch_all(MYSQLI_ASSOC);
                                                 <input type="date" class="form-control" name="ending_date">
                                             </div>
                                             <div class="mb-2 st">
-                                                <label for="" class="form-label">上課日期</label>
+                                                <label for="" class="form-label">上課時間</label>
                                                 <input type="time" class="form-control" name="staring_time">
                                                 到
                                                 <input type="time" class="form-control" name="ending_time">
