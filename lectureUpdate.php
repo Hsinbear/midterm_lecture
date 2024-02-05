@@ -15,10 +15,10 @@ $ending_date = $_POST["ending_date"];
 $staring_time = $_POST["staring_time"];
 $ending_time = $_POST["ending_time"];
 $description = $_POST["description"];
-$id=$_POST["id"];
+$id=$_POST["lecture_id"];
 $valid=$_POST["valid"];
 
-// 更新圖片
+//更新圖片
 $lecture_id = $_POST["lecture_id"];
 $sql = "SELECT * FROM lecture WHERE id=" . $lecture_id;
 $result= $conn->query($sql);
@@ -36,7 +36,7 @@ if ($_FILES['cover']['error'] == 0) {
     $filenameCover = "update" . $filenameCover . "." . $fileExtCover;
 
     #上傳圖片
-    if (move_uploaded_file($_FILES['cover']['tmp_name'], '../lecture_cover/' . $filenameCover)) {
+    if (move_uploaded_file($_FILES['cover']['tmp_name'], './lecture_cover/' . $filenameCover)) {
         echo "封面更新成功";
     } else {
         echo "封面更新失敗";
@@ -59,7 +59,7 @@ if ($_FILES['img']['error'] == 0) {
     $filenameImg = "update" . $filenameImg . "." . $fileExtImg;
 
     #上傳圖片
-    if (move_uploaded_file($_FILES['img']['tmp_name'], '../lecture_img/' . $filenameImg)) {
+    if (move_uploaded_file($_FILES['img']['tmp_name'], './lecture_img/' . $filenameImg)) {
         echo "細節照更新成功";
     } else {
         echo "細節照更新失敗";
@@ -69,6 +69,9 @@ if ($_FILES['img']['error'] == 0) {
     #如果沒有選擇圖片就使用原本資料庫的圖片
     $filenameImg = $oldImg;
 }
+
+$sql = "UPDATE lecture SET name='" . $name . "', img='" . $filenameImg . "' WHERE id=" . $lecture_id;
+$conn->query($sql);
 
 $sql = "UPDATE lecture SET teacher_id='$teacher_id',name='$name',price='$price',amount='$amount',location='$location',starting_date='$starting_date',ending_date='$ending_date',staring_time='$staring_time',ending_time='$ending_time' ,description='$description',valid='$valid' WHERE id=$id";
 

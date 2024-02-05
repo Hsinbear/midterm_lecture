@@ -34,8 +34,8 @@ if ($_FILES["cover"]["error"] == 0 && $_FILES["img"]["error"] == 0) {
     $fileExtCover = pathinfo($_FILES["cover"]["name"], PATHINFO_EXTENSION);
     $fileExtImg = pathinfo($_FILES["img"]["name"], PATHINFO_EXTENSION);
     // 將以上兩者合併成檔名與副檔名重新存於filename中
-    $filenameCover = "upload" . $filenameCover . "." . $fileExtCover;
-    $filenameImg = "upload" . $filenameImg . "." . $fileExtImg;
+    $filenameCover = "add" . $filenameCover . "." . $fileExtCover;
+    $filenameImg = "add" . $filenameImg . "." . $fileExtImg;
     // echo $filename;
     // exit;
 

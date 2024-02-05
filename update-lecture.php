@@ -139,7 +139,7 @@ $lectureCount = $result->num_rows;
                                             </div> -->
                                             <div class="col-lg-8 col-md-8">
                                                 <!-- <form action="doAddLecture.php" method="post" enctype="multipart/form-data"> -->
-                                                <input type="hidden" name="id" value="<?= $lecture["id"] ?>">
+                                                <input type="hidden" name="lecture_id" value="<?= $lecture["id"] ?>">
                                                 <div class="mb-2 st">
                                                     <input type="text" class="form-control" name="name" value="<?= $lecture["name"] ?>">
                                                 </div>
@@ -151,7 +151,6 @@ $lectureCount = $result->num_rows;
                                                     <div>
                                                         <label for="" class="title">上課地點：</label>
                                                         <select name="location" id="">
-                                                            <!-- multiple放在select本身 -->
                                                             <option value="">下拉選取</option>
                                                             <option value="1">台北市</option>
                                                             <option value="2">新北市</option>
@@ -173,13 +172,11 @@ $lectureCount = $result->num_rows;
                                                             <option value="18">澎湖縣</option>
                                                             <option value="19">金門縣</option>
                                                             <option value="20">連江縣</option>
-                                                            <!-- selected預設選項 -->
                                                         </select>
                                                     </div>
                                                     <div>
                                                         <label for="" class="title">授課老師：</label>
                                                         <select name="teacher_id" id="">
-                                                            <!-- multiple放在select本身 -->
                                                             <option value="">下拉選取</option>
                                                             <option value="1">黃湘苗</option>
                                                             <option value="2">黃甄芸</option>
@@ -201,17 +198,14 @@ $lectureCount = $result->num_rows;
                                                             <option value="18">沈靖程</option>
                                                             <option value="19">連家恩</option>
                                                             <option value="20">楊敬祥</option>
-                                                            <!-- selected預設選項 -->
                                                         </select>
                                                     </div>
                                                     <div>
                                                         <label for="" class="title">狀態：</label>
                                                         <select name="valid" id="">
-                                                            <!-- multiple放在select本身 -->
                                                             <option value="">下拉選取</option>
                                                             <option value="0">未開放</option>
                                                             <option value="1">已開放</option>
-                                                            <!-- selected預設選項 -->
                                                         </select>
                                                     </div>
                                                 </div>
@@ -232,14 +226,23 @@ $lectureCount = $result->num_rows;
                                                 </div>
                                                 <div class="mb-3 st">
                                                     <label for="img" class="form-label">課程照片</label>
+                                                    <input type="hidden" name="old_cover" value="<?= $lecture["cover"] ?>">
+                                                    <img src="./lecture_cover/<?= $lecture["cover"] ?>" style="width: 500px" alt="">
+                                                    <div>-</div>
                                                     <input class="form-control" type="file" id="cover" name="cover">
+                                                </div>
+                                                <div class="mb-3 st">
+                                                    <label for="img" class="form-label">課程照片</label>
+                                                    <input type="hidden" name="old_img" value="<?= $lecture["img"] ?>">
+                                                    <img src="./lecture_img/<?= $lecture["img"] ?>" style="width: 500px" alt="">
+                                                    <div>-</div>
                                                     <input class="form-control" type="file" id="img" name="img">
                                                 </div>
                                                 <!-- </form> -->
                                             </div>
                                         </div>
                                         <div class="d-grid d-flex gap-2 mx-auto text-center justify-content-center mt-6">
-                                            <button type="submit" class="btn btn-primary">
+                                            <button type="submit" class="btn btn-success">
                                                 修改
                                             </button>
                                             <button type="reset" class="btn btn-primary">
