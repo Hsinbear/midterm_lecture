@@ -2,65 +2,66 @@
 require_once("./db_connect.php");
 
 $perPage = 5;
-$sqlAll = "SELECT * FROM lecture";
-$resultAll = $conn->query($sqlAll);
-$lectureTotalCount = $resultAll->num_rows;
-
-$pageCount = ceil($lectureTotalCount / $perPage);
-
 $orderStr = ""; // 初始化 $orderStr
 
-if (isset($_GET["order"])) {
-    $order = $_GET["order"];
-    if ($order == 1) {
-        $orderStr = "ORDER BY id ASC";
-    } elseif ($order == 2) {
-        $orderStr = "ORDER BY id DESC";
-    } elseif ($order == 3) {
-        $orderStr = "ORDER BY price ASC";
-    } elseif ($order == 4) {
-        $orderStr = "ORDER BY price DESC";
-    }
-}
+// 计算讲座的总数
+$sqlAll = "SELECT COUNT(*) AS total FROM lecture";
+$resultAll = $conn->query($sqlAll);
+$row = $resultAll->fetch_assoc();
+$lectureTotalCount = $row['total'];
 
+// 计算总页数
+$pageCount = ceil($lectureTotalCount / $perPage);
+
+// 处理搜索查询
 if (isset($_GET["search"])) {
     $search = "%" . mysqli_real_escape_string($conn, $_GET["search"]) . "%";
-    $sql = "SELECT lecture.*, teacher.name AS teacher_name, location.name AS location_name, lecture_img.img AS lecture_img
+    $sql = "SELECT lecture.*, teacher.name AS teacher_name, location.name AS location_name
     FROM lecture
     JOIN teacher ON lecture.teacher_id = teacher.id
     JOIN lecture_location AS location ON lecture.location = location.id
-    JOIN lecture_img ON lecture.id = lecture_img.lecture_id
     WHERE lecture.name LIKE '$search'";
-    $result = $conn->query($sql);
-    $lectureCount = $result->num_rows;
-} elseif (isset($_GET["p"])) {
-    $p = $_GET["p"];
-    $startIndex = ($p - 1) * $perPage;
-    $sql = "SELECT lecture.*, teacher.name AS teacher_name, location.name AS location_name, lecture_img.img AS lecture_img
-    FROM lecture
-    JOIN teacher ON lecture.teacher_id = teacher.id
-    JOIN lecture_location AS location ON lecture.location = location.id
-    JOIN lecture_img ON lecture.id = lecture_img.lecture_id
-    $orderStr LIMIT $startIndex, $perPage";
-    $result = $conn->query($sql);
-} else {
-    $p = 1;
-    $order = 1;
-    $orderStr = "ORDER BY id ASC";
-    $sql = "SELECT lecture.*, teacher.name AS teacher_name, location.name AS location_name, lecture_img.img AS lecture_img
-    FROM lecture
-    JOIN teacher ON lecture.teacher_id = teacher.id
-    JOIN lecture_location AS location ON lecture.location = location.id
-    JOIN lecture_img ON lecture.id = lecture_img.lecture_id
-    $orderStr LIMIT $perPage";
-    $result = $conn->query($sql);
-}
 
-if (isset($_GET["search"])) {
+    // 执行搜索查询并统计结果数
+    $result = $conn->query($sql);
     $lectureCount = $result->num_rows;
 } else {
+    // 处理非搜索查询的分页
+    if (isset($_GET["p"])) {
+        $p = $_GET["p"];
+    } else {
+        $p = 1;
+    }
+    $startIndex = ($p - 1) * $perPage;
+    $sql = "SELECT lecture.*, teacher.name AS teacher_name, location.name AS location_name
+    FROM lecture
+    JOIN teacher ON lecture.teacher_id = teacher.id
+    JOIN lecture_location AS location ON lecture.location = location.id";
+
+    // 检查是否指定了排序方式
+    if (isset($_GET["order"])) {
+        $order = $_GET["order"];
+        if ($order == 1) {
+            $orderStr = "ORDER BY id ASC";
+        } elseif ($order == 2) {
+            $orderStr = "ORDER BY id DESC";
+        } elseif ($order == 3) {
+            $orderStr = "ORDER BY price ASC";
+        } elseif ($order == 4) {
+            $orderStr = "ORDER BY price DESC";
+        }
+    }
+    $sql .= " $orderStr LIMIT $startIndex, $perPage";
+
+    // 执行查询
+    $result = $conn->query($sql);
+
+    // 计算总讲座数
     $lectureCount = $lectureTotalCount;
 }
+
+// 现在 $sql 包含适用于搜索或分页的查询语句。
+
 
 
 // $sqlCombine = "SELECT lecture.*, teacher.name AS teacher_name 
@@ -386,8 +387,26 @@ if (isset($_GET["search"])) {
                                                                     <div class="modal-body">
                                                                         <div class="container">
                                                                             <div class="row">
-                                                                                <div class="col-4">
-                                                                                    <img src="/lecture/img/<?= $lecture["lecture_img"] ?>" class="avatar avatar-sm me-3" alt="user1">
+                                                                                <div class="col-4 ">
+                                                                                    <!-- slide顯示兩張圖片 -->
+                                                                                    <div id="carousel-<?= $lecture["id"] ?>" class="carousel slide" style="width: 300px; height: 300px;">
+                                                                                        <div class="carousel-inner">
+                                                                                            <div class="carousel-item active">
+                                                                                                <img src="/lecture/lecture_cover/<?= $lecture["cover"] ?>" class="d-block w-100" alt="">
+                                                                                            </div>
+                                                                                            <div class="carousel-item">
+                                                                                                <img src="/lecture/lecture_img/<?= $lecture["img"] ?>" class="d-block w-100" alt="">
+                                                                                            </div>
+                                                                                        </div>
+                                                                                        <button class="carousel-control-prev" type="button" data-bs-target="#carousel-<?= $lecture["id"] ?>" data-bs-slide="prev">
+                                                                                            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                                                                                            <span class="visually-hidden">Previous</span>
+                                                                                        </button>
+                                                                                        <button class="carousel-control-next" type="button" data-bs-target="#carousel-<?= $lecture["id"] ?>" data-bs-slide="next">
+                                                                                            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                                                                                            <span class="visually-hidden">Next</span>
+                                                                                        </button>
+                                                                                    </div>
                                                                                 </div>
                                                                                 <div class="col-8">
                                                                                     <table class="table table-bordered">
@@ -470,7 +489,7 @@ if (isset($_GET["search"])) {
                                                                         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">關閉</button>
                                                                         <div>
                                                                             <!-- 修改 -->
-                                                                            <a class="btn btn-primary"href="update-lecture.php?id=<?= $lecture["id"] ?>" method="GET">
+                                                                            <a class="btn btn-primary" href="update-lecture.php?id=<?= $lecture["id"] ?>" method="GET">
                                                                                 修改
                                                                             </a>
                                                                             <!-- 刪除 -->
@@ -492,7 +511,7 @@ if (isset($_GET["search"])) {
                                                                     </div>
                                                                     <div class="modal-footer">
                                                                         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">取消</button>
-                                                                        <a role="button" class="btn btn-danger" href="doDeleteLecture.php?id=<?= $lecture["id"]?>" method="POST">確認</a>
+                                                                        <a role="button" class="btn btn-danger" href="doDeleteLecture.php?id=<?= $lecture["id"] ?>" method="POST">確認</a>
                                                                     </div>
                                                                 </div>
                                                             </div>
@@ -520,7 +539,7 @@ if (isset($_GET["search"])) {
                     </div>
                 </div>
             </div>
-            
+
         </div>
     </main>
     <div class="fixed-plugin">
@@ -597,7 +616,7 @@ if (isset($_GET["search"])) {
             </div>
         </div>
     </div>
-      <!-- Core JS Files  
+    <!-- Core JS Files  
     <script src="../assets/js/core/popper.min.js"></script>
     <script src="../assets/js/core/bootstrap.min.js"></script>
     <script src="../assets/js/plugins/perfect-scrollbar.min.js"></script>

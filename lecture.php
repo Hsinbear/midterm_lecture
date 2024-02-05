@@ -354,8 +354,26 @@ if (isset($_GET["search"])) {
                                                                     <div class="modal-body">
                                                                         <div class="container">
                                                                             <div class="row">
-                                                                                <div class="col-4">
-                                                                                    <img src="/lecture/img/<?= $lecture["lecture_img"] ?>" class="avatar avatar-sm me-3" alt="user1">
+                                                                                <div class="col-4 ">
+                                                                                    <!-- slide顯示兩張圖片 -->
+                                                                                    <div id="carousel-<?= $lecture["id"] ?>" class="carousel slide" style="width: 300px; height: 300px;">
+                                                                                        <div class="carousel-inner">
+                                                                                            <div class="carousel-item active">
+                                                                                                <img src="/lecture/lecture_cover/<?= $lecture["cover"] ?>" class="d-block w-100" alt="">
+                                                                                            </div>
+                                                                                            <div class="carousel-item">
+                                                                                                <img src="/lecture/lecture_img/<?= $lecture["img"] ?>" class="d-block w-100" alt="">
+                                                                                            </div>
+                                                                                        </div>
+                                                                                        <button class="carousel-control-prev" type="button" data-bs-target="#carousel-<?= $lecture["id"] ?>" data-bs-slide="prev">
+                                                                                            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                                                                                            <span class="visually-hidden">Previous</span>
+                                                                                        </button>
+                                                                                        <button class="carousel-control-next" type="button" data-bs-target="#carousel-<?= $lecture["id"] ?>" data-bs-slide="next">
+                                                                                            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                                                                                            <span class="visually-hidden">Next</span>
+                                                                                        </button>
+                                                                                    </div>
                                                                                 </div>
                                                                                 <div class="col-8">
                                                                                     <table class="table table-bordered">
